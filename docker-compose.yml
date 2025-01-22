@@ -1,0 +1,16 @@
+services:
+  db:
+    image: mysql:5.7
+    container_name: my_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+    command: sh -c "echo 'Waiting 10 minutes before starting MySQL...' && sleep 600000 && docker-entrypoint.sh mysqld"
+   
+  app:
+    image: alpine:latest
+    container_name: my_app
+    depends_on:
+      - db
+    command: sh -c "echo 'Starting the app now...' && tail -f /dev/null"
+

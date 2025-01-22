@@ -1,4 +1,0 @@
-deploy:
-  - date
-  - sleep 500000
-  - date
